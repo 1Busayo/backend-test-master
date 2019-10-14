@@ -38,3 +38,10 @@ export class AddTicketInput implements Partial<Ticket> {
   @Field()
   public date: Date
 }
+
+@InputType()
+export class AddTicketInputs {
+
+  @Field(() => [AddTicketInput])
+  public tickets: AddTicketInput[]
+}

@@ -3,6 +3,34 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input AddMovieInput {
+  Title: String!
+  Year: String!
+  Rated: String!
+  Released: DateTime!
+  Runtime: String!
+  Genre: [String!]!
+  Director: String!
+  Writer: String!
+  Actors: [String!]!
+  Plot: String!
+  Language: [String!]!
+  Country: String!
+  Awards: String!
+  Poster: String!
+  Ratings: [RatingInput!]!
+  Metascore: String!
+  imdbRating: String!
+  imdbVotes: String!
+  imdbID: String!
+  Type: String!
+  DVD: String!
+  BoxOffice: String!
+  Production: String!
+  Website: String!
+  Response: String!
+}
+
 input AddTicketInput {
   title: String!
   genre: [String!]!
@@ -10,6 +38,10 @@ input AddTicketInput {
   inventory: Int!
   imageUrl: String!
   date: DateTime!
+}
+
+input AddTicketInputs {
+  tickets: [AddTicketInput!]!
 }
 
 """
@@ -22,16 +54,59 @@ input ListTicketsInput {
   limit: Int!
 }
 
+type Movie {
+  _id: ObjectId!
+  Title: String!
+  Year: String!
+  Rated: String!
+  Released: DateTime!
+  Runtime: String!
+  Genre: [String!]!
+  Director: String!
+  Writer: String!
+  Actors: [String!]!
+  Plot: String!
+  Language: [String!]!
+  Country: String!
+  Awards: String!
+  Poster: String!
+  Ratings: [Rating!]!
+  Metascore: String!
+  imdbRating: String!
+  imdbVotes: String!
+  imdbID: String!
+  Type: String!
+  DVD: String!
+  BoxOffice: String!
+  Production: String!
+  Website: String!
+}
+
 type Mutation {
+  addMovie(input: AddMovieInput!): Movie!
   addTicket(input: AddTicketInput!): Ticket!
+  savemassTickets(tickets: AddTicketInputs!): [Ticket!]!
 }
 
 """Mongo object id scalar type"""
 scalar ObjectId
 
 type Query {
+  addmoviesmatchedwithTickets: [Movie!]!
   ticket(input: TicketInput!): Ticket
   listTickets(input: ListTicketsInput!): [Ticket!]!
+  getandstoreTickets: [Ticket!]!
+  nomatchingticketMovies(limit: Int = 10): [Ticket!]!
+}
+
+type Rating {
+  Source: String!
+  Value: String!
+}
+
+input RatingInput {
+  Source: String!
+  Value: String!
 }
 
 type Ticket {
