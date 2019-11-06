@@ -19,7 +19,7 @@
     "axios": "^0.19.0",
     "graphql": "14.3.0",
     "mongodb": "3.2.4",
-    "mongoose": "5.5.7",
+    "mongoose": "5.7.5",
     "reflect-metadata": "0.1.13",
     "type-graphql": "0.17.3",
     "typegoose": "5.6.0"
